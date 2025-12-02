@@ -19,7 +19,7 @@ User = get_user_model()
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    """Custom token serializer to include user data in response"""
+    # Custom token serializer to include user data in response
     
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -28,7 +28,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class RegisterView(generics.CreateAPIView):
-    """User registration endpoint"""
+    # User registration endpoint
     queryset = User.objects.all()
     permission_classes = [AllowAny]
     serializer_class = UserRegistrationSerializer
@@ -49,19 +49,19 @@ class RegisterView(generics.CreateAPIView):
 
 
 class LoginView(TokenObtainPairView):
-    """User login endpoint that returns access and refresh tokens"""
+    # User login endpoint that returns access and refresh tokens
     serializer_class = CustomTokenObtainPairSerializer
 
 
 class RefreshTokenView(TokenRefreshView):
-    """Refresh access token endpoint"""
+    # Refresh access token endpoint
     pass
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_current_user(request):
-    """Get current authenticated user"""
+    # Get current authenticated user
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
@@ -75,15 +75,15 @@ class VendorViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        """Filter vendors to only show those belonging to the current user"""
+        # Filter vendors to only show those belonging to the current user
         return Vendor.objects.filter(user=self.request.user)
     
     def get_serializer_class(self):
-        """Use list serializer for list view, detail serializer for detail view"""
+        # Use list serializer for list view, detail serializer for detail view
         if self.action == 'list':
             return VendorListSerializer
         return VendorDetailSerializer
     
     def perform_create(self, serializer):
-        """Automatically assign the vendor to the current user"""
+        # Automatically assign the vendor to the current user
         serializer.save(user=self.request.user)

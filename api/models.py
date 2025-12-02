@@ -5,7 +5,7 @@ User = get_user_model()
 
 
 class Vendor(models.Model):
-    """Vendor model for managing vendor information"""
+    # Vendor model for managing vendor information
     
     user = models.ForeignKey(
         User,

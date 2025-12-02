@@ -4,7 +4,7 @@ from .models import Vendor
 
 @admin.register(Vendor)
 class VendorAdmin(admin.ModelAdmin):
-    """Admin configuration for Vendor model"""
+    # Admin configuration for Vendor model
     list_display = ('vendor_name', 'user', 'phone_number', 'email_address', 'created_at')
     list_filter = ('created_at', 'updated_at')
     search_fields = ('vendor_name', 'email_address', 'primary_contact_name')

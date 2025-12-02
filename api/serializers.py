@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    """Serializer for user registration"""
+    # Serializer for user registration
     password = serializers.CharField(
         write_only=True,
         required=True,
@@ -42,7 +42,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Serializer for user information"""
+    # Serializer for user information
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'first_name', 'last_name', 'created_at', 'updated_at')
@@ -50,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class VendorListSerializer(serializers.ModelSerializer):
-    """Serializer for vendor list view (minimal fields)"""
+    # Serializer for vendor list view (minimal fields)
     class Meta:
         model = Vendor
         fields = ('id', 'vendor_name', 'phone_number', 'email_address', 'primary_contact_name', 'created_at', 'updated_at')
@@ -58,7 +58,7 @@ class VendorListSerializer(serializers.ModelSerializer):
 
 
 class VendorDetailSerializer(serializers.ModelSerializer):
-    """Serializer for vendor detail view (all fields)"""
+    # Serializer for vendor detail view (all fields)
     class Meta:
         model = Vendor
         fields = (

@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    """Custom User model extending AbstractUser"""
+    # Custom User model extending AbstractUser
     
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
